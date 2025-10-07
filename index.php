@@ -4,11 +4,11 @@
 // accessing the application at "http://localhost:8888/php-todo-ex/", then
 // BASE_URL should be "/php-todo-ex/". If you are accessing the application at
 // "http://localhost:8888", then BASE_URL should be "/".
-define('BASE_URL', '/');
+define('BASE_URL', '/php-todo-ex/');
 
 // Database connection parameters.
 define('DB_USER', 'todolist');
-define('DB_PASS', 'change-me-now');
+define('DB_PASS', 'CyberLeapi');
 define('DB_NAME', 'todolist');
 define('DB_HOST', '127.0.0.1');
 define('DB_PORT', '3306');
@@ -59,7 +59,7 @@ if (isset($_POST['action'])) {
 
       $id = $_POST['id'];
       if(is_numeric($id)) {
-        $deleteQuery = ''; // IMPLEMENT ME
+        $deleteQuery = 'DELETE FROM todo WHERE id = $id'; 
         if(!$db->query($deleteQuery)) {
           die(print_r($db->errorInfo(), true));
         }
@@ -76,7 +76,7 @@ if (isset($_POST['action'])) {
 /**
  * Select all tasks from the database.
  */
-$selectQuery = ''; // IMPLEMENT ME
+$selectQuery = 'SELECT id, title, done FROM todo ORDER BY created_at DESC'; 
 $items = $db->query($selectQuery);
 ?>
 
